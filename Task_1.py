@@ -18,7 +18,7 @@ def write_csv(filename: str, dir_name: str, column_names: list) -> None:
                         pass
                 
                 for i in range(len(column_names)):
-                        with open(f"{dir_name}\{column_names[i]}.csv", "w") as new_file:
+                        with open(f"{dir_name}/{column_names[i]}.csv", "w") as new_file:
                                 writer = csv.writer(new_file, delimiter = ";", lineterminator="\r")
                                 writer.writerows([[row[i]] for row in lst])
 
