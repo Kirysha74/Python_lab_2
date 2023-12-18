@@ -1,8 +1,17 @@
 import csv
 
+
+def read_csv(filepath: str) -> list:
+    lst = []
+    with open("dataset.csv") as file:
+        reader = csv.reader(file, delimiter = ",")
+        for row in reader:
+            lst.append(row)
+    return lst
+
 class DataIterator:
-    def __init__(self, lst: list):
-        self.lst = lst
+    def __init__(self, filepath: str):
+        self.lst = read_csv(filepath)
         self.counter = 0
     def __iter__(self):
         return self
@@ -14,13 +23,7 @@ class DataIterator:
             raise StopIteration
         
 if __name__ == "__main__":
-    lst = []
-    with open("dataset.csv") as file:
-        reader = csv.reader(file, delimiter = ";")
-        for row in reader:
-            lst.append(row)
-
-    s_iter1 = DataIterator(lst)
+    s_iter1 = DataIterator("dataset.csv")
 
     for val in s_iter1:
         print(val)
